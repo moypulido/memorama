@@ -31,12 +31,12 @@ Este proyecto es una aplicación de Android tipo **Memorama** (juego de memoria)
 2. Java 8 o superior
 3. SDK mínimo: 21
 
-##🛠️ Futuras mejoras
+## 🛠️ Futuras mejoras
 
 1. Guardado de puntuaciones más altas
 2. Niveles de dificultad
 3. Animaciones de victoria
 4. Sonido al emparejar
 
-##📝 Autor
+## 📝 Autor
 Desarrollado por: Moises Noe Pulido Gutierrez
