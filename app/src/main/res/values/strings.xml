@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name" translatable="false">Memorama</string>
+
+    <string name="username" translatable="false">Username</string>
+    <string name="password" translatable="false">Password</string>
+
+    <string name="start_game" translatable="false">Start Game</string>
+    <string name="restart_game" translatable="false">Restart Game</string>
+    <string name="back_to_menu" translatable="false">Back to Menu</string>
+    <string name="punctuation" translatable="false">Punctuation:</string>
+    <string name="category" translatable="false">Category:</string>
+    <string name="size" translatable="false">Size:</string>
+    <string name="time" translatable="false">Time:</string>
+
+    <string-array name="categories">
+        <item>Select Category</item>
+        <item>Animals</item>
+        <item>Fruits</item>
+        <item>Emojis</item>
+    </string-array>
+
+    <string-array name="game_sizes">
+        <item>Select Game Size</item>
+        <item>4</item>
+        <item>6</item>
+        <item>8</item>
+    </string-array>
+</resources>
