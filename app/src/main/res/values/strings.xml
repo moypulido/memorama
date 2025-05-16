@@ -7,10 +7,17 @@
     <string name="start_game" translatable="false">Start Game</string>
     <string name="restart_game" translatable="false">Restart Game</string>
     <string name="back_to_menu" translatable="false">Back to Menu</string>
-    <string name="punctuation" translatable="false">Punctuation:</string>
-    <string name="category" translatable="false">Category:</string>
-    <string name="size" translatable="false">Size:</string>
-    <string name="time" translatable="false">Time:</string>
+    <string name="punctuation" translatable="false">Score</string>
+    <string name="category" translatable="false">Category</string>
+    <string name="size" translatable="false">Size</string>
+    <string name="time" translatable="false">Time</string>
+    <string name="best_score">Best score</string>
+    <string name="seconds">Seconds</string>
+    <string name="by">By</string>
+    <string name="score_0">Score: 0</string>
+    <string name="pause_game">Pause</string>
+    <string name="resume_game">Resume</string>
+
 
     <string-array name="categories">
         <item>Select Category</item>
@@ -19,10 +26,16 @@
         <item>Emojis</item>
     </string-array>
 
+
+
     <string-array name="game_sizes">
         <item>Select Game Size</item>
         <item>4</item>
         <item>6</item>
         <item>8</item>
+        <item>10</item>
+        <item>12</item>
+<!--        <item>14</item>-->
+        <item>16</item>
     </string-array>
 </resources>

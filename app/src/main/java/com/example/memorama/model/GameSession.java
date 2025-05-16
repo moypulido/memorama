@@ -26,11 +26,9 @@ public class GameSession {
         this.resources = resources;
         this.cards = generateShuffledCards();
     }
-
     public int getScore() {
         return score;
     }
-
     public void decrementScore() {
         this.score = Math.max(0, this.score - 3);
     }
@@ -52,18 +50,27 @@ public class GameSession {
 
         this.score += bonus;
     }
-
     public int getCardsSize() {
         int columns = getColumsSize();
         int padding = 32;
         int screenWidth = resources.getDisplayMetrics().widthPixels;
         return screenWidth / columns - padding;
     }
-
     public int getColumsSize() {
-        return (size <= 4) ? 2 : (size <= 6) ? 3 : 4;
+        int col = 0;
+        switch (size) {
+            case 4: col = 2; break;
+            case 6: col = 3; break;
+            case 8: col = 4; break;
+            case 10: col = 5; break;
+            case 12: col = 3; break;
+            case 14: col = 2; break;
+            case 16: col = 4; break;
+            default:
+                throw new IllegalArgumentException("Unsupported game size: " + size);
+        }
+        return col;
     }
-
     public int getRowsSize() {
         int columns = getColumsSize();
         return (size + columns - 1) / columns;
@@ -71,30 +78,23 @@ public class GameSession {
     public List<Card> getCards() {
         return cards;
     }
-
     private List<Card> generateShuffledCards() {
         List<Integer> imageResIds = getImageListByCategory();
         List<Card> cardList = new ArrayList<>();
+        Collections.shuffle(imageResIds);
 
-        int numPairs;
-        switch (size) {
-            case 4: numPairs = 2; break;
-            case 6: numPairs = 3; break;
-            case 8: numPairs = 4; break;
-            default:
-                throw new IllegalArgumentException("Unsupported game size: " + size);
-        }
+        int numPairs = size / 2;
 
         for (int i = 0; i < numPairs; i++) {
-            int resId = imageResIds.get(i % imageResIds.size());
+
+            int resId = imageResIds.get(i);
             cardList.add(new Card(i, resId));
-            cardList.add(new Card(i, resId)); // matching pair
+            cardList.add(new Card(i, resId));
         }
 
         Collections.shuffle(cardList);
         return cardList;
     }
-
     private List<Integer> getImageListByCategory() {
         List<Integer> allImages = new ArrayList<>();
 
@@ -104,29 +104,45 @@ public class GameSession {
                 allImages.add(R.drawable.animal_2);
                 allImages.add(R.drawable.animal_3);
                 allImages.add(R.drawable.animal_4);
+                allImages.add(R.drawable.animal_5);
+                allImages.add(R.drawable.animal_6);
+                allImages.add(R.drawable.animal_7);
+                allImages.add(R.drawable.animal_8);
+                allImages.add(R.drawable.animal_9);
+                allImages.add(R.drawable.animal_10);
                 break;
             case "fruits":
                 allImages.add(R.drawable.fruit_1);
                 allImages.add(R.drawable.fruit_2);
                 allImages.add(R.drawable.fruit_3);
                 allImages.add(R.drawable.fruit_4);
+                allImages.add(R.drawable.fruit_5);
+                allImages.add(R.drawable.fruit_6);
+                allImages.add(R.drawable.fruit_7);
+                allImages.add(R.drawable.fruit_8);
+                allImages.add(R.drawable.fruit_9);
+                allImages.add(R.drawable.fruit_10);
                 break;
             case "emojis":
                 allImages.add(R.drawable.emoji_1);
                 allImages.add(R.drawable.emoji_2);
                 allImages.add(R.drawable.emoji_3);
                 allImages.add(R.drawable.emoji_4);
+                allImages.add(R.drawable.emoji_5);
+                allImages.add(R.drawable.emoji_6);
+                allImages.add(R.drawable.emoji_7);
+                allImages.add(R.drawable.emoji_8);
+                allImages.add(R.drawable.emoji_9);
+                allImages.add(R.drawable.emoji_10);
                 break;
         }
 
         int numPairs = size / 2;
-        return allImages.subList(0, Math.min(numPairs, allImages.size()));
+        return allImages;
     }
-
     public long getTimeElapsed() {
         return System.currentTimeMillis() - startTime;
     }
-
     public boolean isGameOver() {
         for (Card card : cards) {
             if (!card.isMatched()) {
@@ -135,7 +151,6 @@ public class GameSession {
         }
         return true;
     }
-
     public String getCategory() {
         return category;
     }

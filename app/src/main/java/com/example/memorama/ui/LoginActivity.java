@@ -2,6 +2,8 @@ package com.example.memorama.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.memorama.databinding.ActivityLoginBinding;
 import java.util.Map;
@@ -11,8 +13,8 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
 
     private final Map<String, String> users = Map.of(
-            "Player1", "123456",
-            "Player2", "abcdef"
+            "Player1", "123",
+            "Player2", "123"
     );
 
     @Override
@@ -26,13 +28,17 @@ public class LoginActivity extends AppCompatActivity {
             String username = binding.editTextUsername.getText().toString().trim();
             String password = binding.editTextPassword.getText().toString().trim();
 
-            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-            startActivity(intent);
-            finish();
-//            if (users.containsKey(username) &&  users.get(username).equals(password)) {
-//            } else {
-//                Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show();
-//            }
+            if (users.containsKey(username) && users.get(username).equals(password)) {
+                getSharedPreferences("MemoramaPrefs", MODE_PRIVATE)
+                        .edit()
+                        .putString("currentUser", username)
+                        .apply();
+                Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                startActivity(intent);
+                finish();
+            }else{
+                Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }

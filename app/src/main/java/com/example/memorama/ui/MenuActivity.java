@@ -7,12 +7,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memorama.R;
 import com.example.memorama.databinding.ActivityMenuBinding;
 
-public class MenuActivity extends AppCompatActivity {
+public class
+MenuActivity extends AppCompatActivity {
 
     private ActivityMenuBinding binding;
 
@@ -60,6 +63,15 @@ public class MenuActivity extends AppCompatActivity {
         binding.buttonStartGame.setOnClickListener(v -> {
             String selectedCategory = binding.spinnerCategories.getSelectedItem().toString();
             String selectedSize = binding.spinnerGameSize.getSelectedItem().toString();
+
+            boolean isCategorySelected = !selectedCategory.equals("Select Category");
+            boolean isSizeSelected = !selectedSize.equals("Select Game Size");
+
+            if (!isCategorySelected || !isSizeSelected) {
+                Toast.makeText(this, "Please select both category and game size", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             startGame(selectedCategory, selectedSize);
         });
     }
